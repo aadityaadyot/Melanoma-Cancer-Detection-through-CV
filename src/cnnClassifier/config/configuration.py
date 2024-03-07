@@ -2,7 +2,7 @@ from cnnClassifier.constants import *
 import os
 from cnnClassifier.utils.common import read_yaml, create_directories
 from cnnClassifier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, 
-                                                PrepareCallbacksConfig, TrainingConfig)
+                                                PrepareCallbacksConfig, TrainingConfig, EvaluationConfig)
 import tensorflow as tf
 
 class ConfigurationManager:
@@ -87,3 +87,13 @@ class ConfigurationManager:
         )
 
         return training_config
+
+    def get_validation_config(self) -> EvaluationConfig:
+        eval_config = EvaluationConfig(
+            path_of_model="/config/workspace/artifacts/training/model.h5",
+            training_data="/config/workspace/artifacts/data_ingestion/Skin Cancel cell",
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE
+        )
+        return eval_config
