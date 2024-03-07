@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 from cnnClassifier.entity.config_entity import EvaluationConfig
 from pathlib import Path
+import tensorflow as tf
 
 class Evaluation:
     def __init__(self, config: EvaluationConfig):
